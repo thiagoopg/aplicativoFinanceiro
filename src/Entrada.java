@@ -23,6 +23,9 @@ public class Entrada{
             valor = valor * -1;
         }
     }
+    public void getEntrada(){
+        System.out.println("nome: " + getNome() + "\nData: " + getData() + "\nTipo: " + getStatus());
+    }
     public String getNome() {
         return nome;
     }
@@ -45,6 +48,10 @@ public class Entrada{
 
     public int getAno() {
         return ano;
+    }
+    public String getStatus(){
+        String respostaStatus = (status == true) ? "Receita" : "Despesa";
+        return respostaStatus;
     }
     public String getData(){
         String data = String.format("%02d/%02d/%04d", dia, mes, ano);
