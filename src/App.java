@@ -1,6 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Entrada entrada1 = new Entrada("Mercadinho", 220, 11, 06, 2003, true);
-        entrada1.getEntrada();
+        BancoDeDados bancodeDados = new BancoDeDados();
+        bancodeDados.addEntrada("salário", 500, 11, 05, 2024, false);
+        bancodeDados.verEntrada(1);
     }
 }
