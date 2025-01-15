@@ -21,6 +21,7 @@ public class Entrada{
     
     //Pega todos os valores ao mesmo tempo
     public void getEntrada(){
+        System.out.println("\n______________________________________\n");
         System.out.println("nome: " + getNome() + "\nData: " + getData() + "\nTipo: " + getStatus());
     }
 
@@ -42,7 +43,8 @@ public class Entrada{
         return valor;
     }
     public void setValor(double valor){
-        this.valor = valor;
+        this.valor = (this.status) ? valor : valor*-1;
+        
     }
 
     //Get e Set do Dia/Mes/Ano
@@ -72,8 +74,9 @@ public class Entrada{
         String respostaStatus = (status) ? "Receita" : "Despesa";
         return respostaStatus;
     }
-    //ver como vou fazer o setStatus
-
+    public void setStatus(boolean status){
+        this.status = status;
+    }
     //Get da data completa
     public String getData(){
         String data = String.format("%02d/%02d/%04d", dia, mes, ano);
