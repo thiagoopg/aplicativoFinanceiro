@@ -1,7 +1,6 @@
 
 public class Entrada{
 
-    private int id;
     private String nome;
     private double valor;
     private int dia;
@@ -9,8 +8,7 @@ public class Entrada{
     private int ano;
     private boolean status;
 
-    public Entrada(int id, String nome, double valor, int dia, int mes, int ano, boolean status) {
-        this.id = id;
+    public Entrada(String nome, double valor, int dia, int mes, int ano, boolean status) {
         this.nome = nome;
         this.valor = (status) ? valor : valor*-1;
         this.dia = dia;
@@ -21,15 +19,9 @@ public class Entrada{
     
     //Pega todos os valores ao mesmo tempo
     public void getEntrada(){
-        System.out.println("\n______________________________________\n");
-        System.out.println("nome: " + getNome() + "\nData: " + getData() + "\nTipo: " + getStatus());
+        System.out.println("\nnome: " + getNome() + "\nValor: " + getValor() + "\nData: " + getData() + "\nTipo: " + getStatus());
     }
 
-    //Get do Id
-    public int getId() {
-        return id;
-    }
-    
     //Get e Set do nome
     public String getNome() {
         return nome;

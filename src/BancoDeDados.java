@@ -1,63 +1,85 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class BancoDeDados{
 
-    private int idDisponivel;
-    private List<Entrada> banco;
+
+    private int idDisponivel = 1;
+    private Map<Integer, Entrada> banco;
 
     //Método construtor - Inicialização
     public BancoDeDados(){
-        this.idDisponivel = 1;
-        this.banco = new ArrayList<>();
+        this.banco = new HashMap<>();
     }
 
     //Gerenciamento de entradas
     public void addEntrada(String nome, double valor, int dia, int mes, int ano, boolean status){
-        banco.add(new Entrada(idDisponivel, nome, valor, dia, mes, ano, status));
+        this.banco.put(this.idDisponivel, new Entrada(nome, valor, dia, mes, ano, status));
         idDisponivel++;
     }
     public void removeEntrada(int id){
-        banco.removeIf(entrada -> entrada.getId() == id); //Sugestão da IA
+        this.banco.remove(id);
     }
     //Atualizando entradas
-    public void attNome(int id, String nome){
-        for (Entrada entrada : banco) {
-            if (entrada.getId() == id) { //Sugestão da IA, tentar achar uma função que busque o ID direto, sem precisar do for
-                entrada.setNome(nome);
-                break;
-            }
+    public void attNome(int id, String nome) {
+        if (banco.containsKey(id)) {
+            Entrada entrada = banco.get(id);
+            entrada.setNome(nome);
+        } else {
+            System.out.println("ID não encontrado!");
         }
     }
-    public void attValor(int id, int num){
-        banco.get(id).setValor(num);
+
+    public void attValor(int id, double num){
+        if (banco.containsKey(id)) {
+            Entrada entrada = banco.get(id);
+            entrada.setValor(num);
+        } else {
+            System.out.println("ID não encontrado!");
+        }    
     }
+
     public void attDia(int id, int num){
-        banco.get(id).setDia(num);
+        if (banco.containsKey(id)) {
+            banco.get(id).setAno(num);
+        } else {
+            System.out.println("ID não encontrado!");
+        }
     }
+
     public void attMes(int id, int num){
-        banco.get(id).setMes(num);
+        if (banco.containsKey(id)) {
+            banco.get(id).setMes(num);
+        } else {
+            System.out.println("ID não encontrado!");
+        }
     }
+
     public void attAno(int id, int num){
-        banco.get(id).setAno(num);
+        if (banco.containsKey(id)) {
+            banco.get(id).setAno(num);
+        } else {
+            System.out.println("ID não encontrado!");
+        }
     }
+
     public void attStatus(int id, boolean status){
-        banco.get(id).setStatus(status);
+        this.banco.get(id).setStatus(status);
     }
+
     //Ver entradas
     public void verEntrada(int id){
-        for (Entrada entrada : banco) {
-            if (entrada.getId() == id) {
-                entrada.getEntrada();
-                break;
-            }
-        }
+        System.out.println("Id: " + id);
+        this.banco.get(id).getEntrada();
+        System.out.println("\n______________________________________\n");
     }
     public void verEntradas(){
-        for (Entrada entrada : banco) {
-            entrada.getEntrada();
-        }    
+        banco.forEach((Integer, Entrada) -> {
+            System.out.println("Id: " + Integer);
+            this.banco.get(Integer).getEntrada();
+            System.out.println("\n______________________________________\n");
+        });
     }
 }
 
