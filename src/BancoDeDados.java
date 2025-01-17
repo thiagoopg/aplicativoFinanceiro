@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.time.LocalDate;
 
 
 public class BancoDeDados{
@@ -7,7 +8,7 @@ public class BancoDeDados{
 
     private int idDisponivel = 1;
     private Map<Integer, Entrada> banco;
-
+    double total;
     //Método construtor - Inicialização
     public BancoDeDados(){
         this.banco = new HashMap<>();
@@ -19,7 +20,7 @@ public class BancoDeDados{
         idDisponivel++;
     }
     public void removeEntrada(int id){
-        this.banco.remove(id);
+        this.banco.remove(id);  
     }
     //Atualizando entradas
     public void attNome(int id, String nome) {
@@ -77,9 +78,33 @@ public class BancoDeDados{
     public void verEntradas(){
         banco.forEach((Integer, Entrada) -> {
             System.out.println("Id: " + Integer);
-            this.banco.get(Integer).getEntrada();
+            Entrada.getEntrada();
             System.out.println("\n______________________________________\n");
         });
     }
+    public void verEntradasPorTipo(boolean status){
+        banco.forEach((Integer, Entrada) -> {
+            if (banco.get(Integer).getStatus() == status) {
+                System.out.println("Id: " + Integer);
+                this.banco.get(Integer).getEntrada();
+                System.out.println("\n______________________________________\n");
+            }
+        });
+    }
+    public void verEntradasPorDatas(LocalDate dataInicial, LocalDate dataFinal){
+        banco.forEach((Integer, Entrada) -> {
+            if(LocalDate.parse(Entrada.getDataString()).isAfter(dataInicial)
+            && LocalDate.parse(Entrada.getDataString()).isBefore(dataFinal)
+            && (LocalDate.parse(Entrada.getDataString()).isEqual(dataInicial) || LocalDate.parse(Entrada.getDataString()).isEqual(dataFinal))){
+                Entrada.getEntrada();
+            }
+        });
+    }
+    public double getValorTotal(){
+        total = 0;
+        this.banco.forEach((Integer, Entrada) -> {
+            this.total += Entrada.getValor();
+        });
+        return total;
+    }
 }
-

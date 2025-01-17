@@ -19,8 +19,21 @@ public class Entrada{
     
     //Pega todos os valores ao mesmo tempo
     public void getEntrada(){
-        System.out.println("\nnome: " + getNome() + "\nValor: " + getValor() + "\nData: " + getData() + "\nTipo: " + getStatus());
+        System.out.println("\nnome: " + getNome() + "\nValor: " + getValor() + "\nData: " + getDataString() + "\nTipo: " + (getStatus() ? "Receita" : "Despesa"));
     }
+    //Get da data completa
+    public String getDataString(){
+        String data = String.format("%02d/%02d/%04d", dia, mes, ano);
+        return data;
+    }
+    public int[] getData(){
+        int[] data = new int[3];
+        data[0] = dia;
+        data[1] = mes;
+        data[2] = ano;
+        return data;
+    }
+//______________________________________________________________________________________________________________________________________
 
     //Get e Set do nome
     public String getNome() {
@@ -62,16 +75,11 @@ public class Entrada{
     }
 
     //Get e Set do Status
-    public String getStatus(){
-        String respostaStatus = (status) ? "Receita" : "Despesa";
-        return respostaStatus;
+    public boolean getStatus(){
+        return status;
     }
     public void setStatus(boolean status){
         this.status = status;
-    }
-    //Get da data completa
-    public String getData(){
-        String data = String.format("%02d/%02d/%04d", dia, mes, ano);
-        return data;
+        this.valor = (status == this.status) ? valor : valor*-1; 
     }
 }
