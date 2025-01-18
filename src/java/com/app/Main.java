@@ -1,9 +1,12 @@
+package java.com.app;
 import java.util.Scanner;
 import java.time.LocalDate;
 
 
-public class App {
+public class Main {
     public static LocalDate pedeData() {
+        
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         int[] data = new int[3];
         
